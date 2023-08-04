@@ -99,10 +99,9 @@ class RdmaSocket(object):
         ret = libc.bind(self.socket, ctypes.addressof(sin), SIN_SIZE)
         if ret == -1:
             raise IOError(errno.errorcode[ctypes.get_errno()])
-        else:
-            self.bound = True
-            self.local_addr = addr
-            self.local_port = port
+        self.bound = True
+        self.local_addr = addr
+        self.local_port = port
 
     def close(self):
         return libc.close(self.socket)
